@@ -12,11 +12,14 @@ COPY app.py .
 # Install packages from requirements.txt
 # hadolint ignore=DL3013
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+pip install --no-cache-dir --requirement requirements.txt
 
 ## Step 4:
 # Expose port 80
+EXPOSE 80
 
 ## Step 5:
 # Run app.py at container launch
+CMD ["python3", "app.py"]
 
